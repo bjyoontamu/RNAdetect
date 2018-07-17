@@ -1,0 +1,116 @@
+
+------------------------------------------------------------------------
+		RNAdetect package for ncRNA detection
+------------------------------------------------------------------------
+
+
+
+
+--------------------Datasets distributed with the RNAdetect package ----
+
+
+The current distribution of the RNApackage package includes the following
+datasets:
+
+	GenomeBench/EColi
+	GenomeBench/SCoelicolor
+
+	RfamBench/Negative
+	RfamBench/Positive
+
+
+
+RfamBench dataset:
+--------------------
+This dataset contains 44,096 sequence sets and 198,432 RNA sequences
+drawn from Rfam database 12.1. 
+The positive ncRNA samples correspond to the alignment of 3 to 6 real RNA
+sequences of the same type.
+The negative samples were obtained by randomly shuffling the aligned RNA
+sequences.
+
+
+GenomeBench dataset:
+--------------------
+
+This dataset contains aligned genome sequences, which can be used to test
+ncRNA prediction in the E. Coli genome (NCBI: NC000913) and the S. coelicolor
+(NCBI: NC003888) genome.
+
+In the E. Coli dataset, there are 65 sequence segments with known ncRNA loci
+that are aligned with the corresponding genome segments of
+	- Klebsiella pneumoniae (NCBI: NC011283)
+	- Salmonella paratyphi (NCBI: NC011147)
+	- Salmonella typhi (NCBI: NC004631), and
+	- Shigella boydii (NCBI: NC010658).
+
+For the genome S. coelicolor, there are 48 sequence segments with known ncRNA
+loci that are aligned with the corresponding genome segments of
+	- Streptomyces avermitilis (NCBI: NC003155)
+	- Streptomyces griseus (NCBI: NC010572)
+	- Streptomyces scabiei (NCBI: NC013929), and 
+	- Streptomyces venezuelae (NCBI: NC018750)
+
+
+
+
+
+
+--------------------Running the RNAdetect algorithm---------------------
+
+
+The example below shows how you can use RNAdetect to predict potential
+ncRNAs in the sequence alignment provided as an input to the algorithm:
+
+
+	./RNAdetect EColi_RNA0001.fa  -w=150 -s=50
+
+
+EColi_RNA0001.fa is an alignment file that is included in the datasets
+distributed with the RNAdetect package (see GenomeBench/EColi/)
+
+
+
+
+
+--------------------Output of the RNAdetect algorithm-------------------
+
+
+Running the above command will yield the following output:
+
+
+	Detection begin..
+	Load data...
+	Detect...
+	Nals=5 Lals=457
+	1: Id0=1 Id1=150
+	   prob_rna=0.960310 class=1
+	2: Id0=51 Id1=200
+	   prob_rna=0.984220 class=1
+	3: Id0=101 Id1=250
+	   prob_rna=0.033892 class=0
+	4: Id0=151 Id1=300
+	   prob_rna=0.002720 class=0
+	5: Id0=201 Id1=350
+	   prob_rna=0.152192 class=0
+	6: Id0=251 Id1=400
+	   prob_rna=0.008780 class=0
+	7: Id0=301 Id1=450
+	   prob_rna=0.011361 class=0
+	8: Id0=308 Id1=457
+ 	  prob_rna=0.038982 class=0
+	Done.
+
+
+
+Please refer to the Ensembl Genomes database for the loci of the known
+ncRNAs, and run RNAdetect to test the prediction performance.
+
+For the example of EColi_RNA0001.fa shown above, there exists a tRNA
+(loci: 228928-229004), which is accurately identified by RNAdetect as
+shown above
+
+
+
+
+
